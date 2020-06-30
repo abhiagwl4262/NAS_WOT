@@ -98,7 +98,8 @@ def main():
             x, target     = next(data_iterator)
             x, target = x.cuda(), target.cuda()
             net = net.cuda()
-            net.eval()
+            # net.eval()
+            net.train()
             jacobs, labels= get_batch_jacobian(net, x, target)
             jacobs = jacobs.reshape(jacobs.size(0), -1).cpu().numpy()
             try:
